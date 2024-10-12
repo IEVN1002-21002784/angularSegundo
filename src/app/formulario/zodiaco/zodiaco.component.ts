@@ -61,12 +61,12 @@ export class ZodiacoComponent implements OnInit {
     for (let i = 0; i < signos.length; i++) {
       if (fechaNacimiento < signos[i].fechaLimite) {
         this.signo = signos[i - 1].nombre;
-        this.signoImagen = `assets/${signos[i - 1].nombre}.png`; // Asegúrate de tener imágenes en la carpeta "assets"
+        this.signoImagen = `assets/${signos[i - 1].nombre}.png`; 
         return;
       }
     }
 
     this.signo = signos[signos.length - 1].nombre;
-    this.signoImagen = `assets/${signos[signos.length - 1].nombre}.png`; // Último signo zodiacal
+    this.signoImagen = `assets/${signos[signos.length - 1].nombre}.png`; 
   }
 }
