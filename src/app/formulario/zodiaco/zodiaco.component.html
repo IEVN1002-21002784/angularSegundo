@@ -1,0 +1,58 @@
+<div class="grid grid-cols-4 gap-4">
+    <div class="col-start-2">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
+        <div class="mb-5">
+          <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+          <input type="text" id="nombre" formControlName="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Nombre" />
+        </div>
+  
+        <div class="mb-5">
+          <label for="Apaterno" class="block mb-2 text-sm font-medium text-gray-900">Apellido Paterno</label>
+          <input type="text" id="Apaterno" formControlName="Apaterno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Apellido Paterno" />
+        </div>
+  
+        <div class="mb-5">
+          <label for="Amaterno" class="block mb-2 text-sm font-medium text-gray-900">Apellido Materno</label>
+          <input type="text" id="Amaterno" formControlName="Amaterno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Apellido Materno" />
+        </div>
+  
+        <div class="grid grid-cols-3 gap-2 mb-5">
+          <div>
+            <label class="block text-sm font-medium text-gray-900">Día</label>
+            <input type="number" formControlName="dia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-full" placeholder="22" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-900">Mes</label>
+            <input type="number" formControlName="mes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-full" placeholder="02" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-900">Año</label>
+            <input type="number" formControlName="año" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-full" placeholder="1990" />
+          </div>
+        </div>
+  
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Sexo</label>
+          <div>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" formControlName="sexo" value="Masculino" class="text-blue-500" />
+              <span class="ml-2">Masculino</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" formControlName="sexo" value="Femenino" class="text-blue-500" />
+              <span class="ml-2">Femenino</span>
+            </label>
+          </div>
+        </div>
+  
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">Registrar</button>
+      </form>
+    </div>
+  
+    <div class="col-start-3 flex flex-col items-center justify-center">
+      <p *ngIf="edad !== null" class="text-gray-900 text-sm mt-4">Edad: {{ edad }}</p>
+      <p *ngIf="signo" class="text-gray-900 text-sm mt-2">Signo: {{ signo }}</p>
+      <img *ngIf="signoImagen" [src]="signoImagen" alt="{{ signo }}" class="w-16 h-16 mt-2" />
+    </div>
+  </div>
+  
