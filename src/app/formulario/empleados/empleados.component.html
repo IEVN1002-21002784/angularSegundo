@@ -1,0 +1,103 @@
+<div class="bg-blue-100 p-8">
+    <div class="grid grid-cols-3 gap-4">
+        <div class="col-span-1">
+            <form *ngIf="!mod_mostrar" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <p class="font-bold">Registro</p>
+                <div class="mb-4">
+                    <label for="matricula" class="block font-bold">Matrícula</label>
+                    <input formControlName="matricula" type="number" min="0" id="matricula" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="nombre" class="block font-bold">Nombre</label>
+                    <input formControlName="nombre" type="text" id="nombre" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="correo" class="block font-bold">Correo</label>
+                    <input formControlName="correo" type="email" id="correo" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="edad" class="block font-bold">Edad</label>
+                    <input formControlName="edad" type="number" id="edad" min="18" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="horas" class="block font-bold">Horas trabajadas</label>
+                    <input formControlName="horas" type="number" id="horas" min="1" class="border border-gray-400 p-2 w-full">
+                </div>
+                <button class="bg-blue-500 text-white p-2 rounded w-full">Registrar</button>
+            </form>
+
+            <form *ngIf="mod_mostrar" [formGroup]="formModificar" (ngSubmit)="update()">
+                <p class="font-bold">Modificar</p>
+                <div class="mb-4">
+                    <label for="matricula" class="block font-bold">Matrícula</label>
+                    <input formControlName="matricula_mod" [disabled]="true" type="number" min="0" id="matricula" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="nombre" class="block font-bold">Nombre</label>
+                    <input formControlName="nombre_mod" type="text" id="nombre" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="correo" class="block font-bold">Correo</label>
+                    <input formControlName="correo_mod" type="email" id="correo" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="edad" class="block font-bold">Edad</label>
+                    <input formControlName="edad_mod" type="number" id="edad" min="18" class="border border-gray-400 p-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="horas" class="block font-bold">Horas trabajadas</label>
+                    <input formControlName="horas_mod" type="number" id="horas" min="1" class="border border-gray-400 p-2 w-full">
+                </div>
+                <button class="bg-blue-500 text-white p-2 rounded w-full">Modificar</button>
+            </form>
+        </div>
+
+        <!-- Tabla alineada a la izquierda -->
+        <div class="col-span-2">
+            <button (click)="imprimirTabla()" class="bg-blue-500 text-white p-2 rounded mb-4">Mostrar Tabla</button>
+
+            <form [formGroup]="formMod">
+                <table class="table-auto w-full text-left border-collapse border border-gray-400">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border border-gray-400 p-2"></th>
+                            <th class="border border-gray-400 p-2">Matrícula</th>
+                            <th class="border border-gray-400 p-2">Nombre</th>
+                            <th class="border border-gray-400 p-2">Correo</th>
+                            <th class="border border-gray-400 p-2">Edad</th>
+                            <th class="border border-gray-400 p-2">Horas Trabajadas</th>
+                            <th class="border border-gray-400 p-2">Horas x Paga</th>
+                            <th class="border border-gray-400 p-2">Horas Extras</th>
+                            <th class="border border-gray-400 p-2">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="mostrar">
+                        <tr *ngFor="let empleado of EmpleadosArray">
+                            <td class="border border-gray-400 p-2">
+                                <input type="radio" formControlName="selected" [value]="empleado.matricula" id="selected_{{empleado.matricula}}">
+                            </td>
+                            <td class="border border-gray-400 p-2">{{ empleado.matricula }}</td>
+                            <td class="border border-gray-400 p-2">{{ empleado.nombre }}</td>
+                            <td class="border border-gray-400 p-2">{{ empleado.correo }}</td>
+                            <td class="border border-gray-400 p-2">{{ empleado.edad }}</td>
+                            <td class="border border-gray-400 p-2">{{ empleado.horas }}</td>
+                            <td class="border border-gray-400 p-2">{{ pagarHoras }}</td>
+                            <td class="border border-gray-400 p-2">{{ pagarHorasExtras }}</td>
+                            <td class="border border-gray-400 p-2">{{ subtotal }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-gray-300 font-bold">
+                            <td colspan="8" class="border border-gray-400 p-2 text-right">Total a Pagar</td>
+                            <td class="border border-gray-400 p-2">{{total}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+            <div class="mt-4 space-y-2">
+                <button (click)="ModRegistro()" class="bg-blue-500 text-white p-2 rounded w-full">Modificar</button>
+                <button (click)="borrarRegistro()" class="bg-blue-500 text-white p-2 rounded w-full">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
